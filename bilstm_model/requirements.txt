@@ -1,0 +1,12 @@
+pandas
+streamlit
+numpy
+plotly
+scikit-learn
+altair
+time
+glob
+http://download.pytorch.org/whl/cpu/torch
+itertools
+keras
+sklearn
