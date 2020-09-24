@@ -17,4 +17,4 @@ df_cat_df=df_encoded_[df_encoded_.id==df_cat_default_type]
 st.write(df_cat_df.iloc[:,1:4])
          
 st.subheader('Words Matched to Predicted Skill Category')
-st.write(print(df_cat_df.iloc[:,4]))
+st.text(df_cat_df.iloc[:,4])
