@@ -14,7 +14,7 @@ df_cat_default_type=st.selectbox('Select ID', list(df_encoded_.id.unique()))
                           
 df_cat_df=df_encoded_[df_encoded_.id==df_cat_default_type]
 
-st.write(df_cat_df.iloc[:,1:3])
+st.write(df_cat_df.iloc[:,1:4])
          
 st.subheader('Words Matched to Predicted Skill Category')
 st.write(df_cat_df.iloc[:,4])
