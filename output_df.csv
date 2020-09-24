@@ -1,0 +1,8 @@
+,epoch,loss,validation_loss,validation_accuracy,time
+0,Epoch 1/7 , loss=27.2994 , val_loss=23.5830  , val_acc=0.8688  , time=61.18s
+1,Epoch 2/7 , loss=21.8943 , val_loss=18.6806  , val_acc=0.8868  , time=61.01s
+2,Epoch 3/7 , loss=15.7105 , val_loss=19.5533  , val_acc=0.8845  , time=61.07s
+3,Epoch 4/7 , loss=12.2912 , val_loss=18.0578  , val_acc=0.8946  , time=61.17s
+4,Epoch 5/7 , loss=9.8245 , val_loss=24.0381  , val_acc=0.8980  , time=61.80s
+5,Epoch 6/7 , loss=8.4085 , val_loss=20.9127  , val_acc=0.8980  , time=61.06s
+6,Epoch 7/7 , loss=6.9562 , val_loss=26.3629  , val_acc=0.9036  , time=61.26s
