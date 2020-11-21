@@ -17,6 +17,8 @@ df_cat_df=df_encoded_[df_encoded_.id==df_cat_default_type]
 st.write(df_cat_df.iloc[:,1:4])
          
 st.subheader('Words Matched to Predicted Skill Category')
-st.write(pd.concat([pd.Series(list(range(1,len(df_cat_df.iloc[:,4])+1)),name='index_'), 
+
+words_matched=pd.concat([pd.Series(list(range(1,len(df_cat_df.iloc[:,4])+1)),name='index_'), 
            pd.Series(df_cat_df.iloc[:,4],name='word').explode()],
           axis=1))
+st.write(''.join(words_matched.word).split(','))
