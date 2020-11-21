@@ -20,5 +20,5 @@ st.subheader('Words Matched to Predicted Skill Category')
 
 words_matched=pd.concat([pd.Series(list(range(1,len(df_cat_df.iloc[:,4])+1)),name='index_'), 
            pd.Series(df_cat_df.iloc[:,4],name='word').explode()],
-          axis=1))
+          axis=1)
 st.write(''.join(words_matched.word).split(','))
