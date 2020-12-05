@@ -10,6 +10,6 @@ Steps:
 
 The Streamlit application for this model can be viewed here: https://bilstm.herokuapp.com/
 
-You are welcome to run the deep learning model in heroku directly here: https://nlp-deep-learning.herokuapp.com/
+You are welcome to run the deep learning model directly in heroku here: https://nlp-deep-learning.herokuapp.com/
 
 Data: online job postings broken into skill categories as designated by ONET online. Preprocessing: 1. emails removed using regex 2. punctuation removed 3. lowercase transformation 4. stemmed
