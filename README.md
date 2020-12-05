@@ -12,7 +12,7 @@ The Streamlit application for this model can be viewed here: https://bilstm.hero
 
 Data: online job postings broken into skill categories as designated by ONET online. Preprocessing: 1. emails removed using regex 2. punctuation removed 3. lowercase transformation 4. stemmed
 
-If you want to run the deep learning model in heroku, clone and run this repository:
+If you want to run the deep learning model in heroku, it can be viewed here: https://git.heroku.com/nlp-deep-learning.git
 
 
 
