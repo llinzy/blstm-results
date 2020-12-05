@@ -24,9 +24,10 @@ data3=data3.drop_duplicates(keep='first')
 data3['occ_group']=data3['occ_group'].fillna('None')
 data3=data3[data3.occ_group!='None']
 
-datalist1=glob.glob('glove_clean/*.csv')
-
-combined_datalist=[pd.read_csv(i) for i in datalist1]
+datalist1=glob.glob('glove_dic1/*.csv')
+datalist2=glob.glob('glove_dic2/*.csv')
+datalist_c=datalist1+datalist2
+combined_datalist=[pd.read_csv(i) for i in datalist_c]
 
 s_=list(itertools.chain.from_iterable([list(i.word) for i in combined_datalist]))
 values_=list(itertools.chain.from_iterable([list(i.values_) for i in combined_datalist]))
