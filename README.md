@@ -1,7 +1,7 @@
 # NLP Deep learning model with interactive visualization 
 
 Deploying deep learning models directly through Heroku can be slow depending on the size of the model.
-This is a demonstration of the practical usage of Streamlit to visualize the the results of a large deep learning model in Heroku instead.
+To overcome this limitation, this demonstration uses Streamlit to visualize the the results of a large deep learning model in Heroku rather than running it directly.
 
 Steps:
 1. Run the deep learning model locally and save results.
