@@ -1,18 +1,21 @@
 import time
 import pandas as pd
 import numpy as np
+import re
 import glob
 import torch
 import itertools
 import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
+import pandas as pd
 from torch.utils.data import Dataset, DataLoader
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from sklearn import preprocessing
 from numpy import zeros
 import streamlit as st
+
 
 data3=pd.read_csv('d_group2.csv')
 data3=data3.iloc[:,1:]
@@ -24,12 +27,11 @@ data3=data3.drop_duplicates(keep='first')
 data3['occ_group']=data3['occ_group'].fillna('None')
 data3=data3[data3.occ_group!='None']
 
-datalist1=glob.glob('glove_dic1/*.csv')
-datalist2=glob.glob('glove_dic2/*.csv')
-datalist_c=datalist1+datalist2
-combined_datalist=[pd.read_csv(i) for i in datalist_c]
+datalist1=glob.glob('glove_file_*')
 
-s_=list(itertools.chain.from_iterable([list(i.word) for i in combined_datalist]))
+combined_datalist=[pd.read_csv(i) for i in datalist1]
+
+words_=list(itertools.chain.from_iterable([list(i.word) for i in combined_datalist]))
 values_=list(itertools.chain.from_iterable([list(i.values_) for i in combined_datalist]))
 
 values_=[np.array(re.findall(r'[\d\.]{1,8}',str(i)),dtype='float32') for i in values_]
@@ -176,8 +178,8 @@ for epoch in range(n_epochs):
     elapsed_time = time.time() - start_time 
     output.append('Epoch {}/{} \t loss={:.4f} \t val_loss={:.4f}  \t val_acc={:.4f}  \t time={:.2f}s'.format(
                 epoch + 1, n_epochs, avg_loss, avg_val_loss, val_accuracy, elapsed_time))
-				
-	print('Epoch {}/{} \t loss={:.4f} \t val_loss={:.4f}  \t val_acc={:.4f}  \t time={:.2f}s'.format(
+    
+    st.write('Epoch {}/{},   loss={:.4f},  val_loss={:.4f},  val_acc={:.4f},  time={:.2f}s'.format(
                 epoch + 1, n_epochs, avg_loss, avg_val_loss, val_accuracy, elapsed_time))
                 
 
@@ -209,6 +211,32 @@ df_encoded['actual_class_']=[skill_decoding[i] for i in df_encoded['actual_class
 df_encoded['predicted_class_']=[skill_decoding[i] for i in df_encoded['predicted_class']]
 df_encoded_=df_encoded[['actual_class_','predicted_class_','text2']].reset_index()
 
-df_encoded_.columns=['id', 'actual_class_', 'predicted_class_', 'words']
+df_encoded_.columns=['id', 'actual_class_', 'predicted_class_', 'words_']
 
-df_encoded_.head()
+words3=[]
+for i in df_encoded_['words_']:
+    words3.append([p for p in re.findall(r'[a-z]{1,20}',str(i))])
+
+words4=[]
+for i in words3:
+    words4.append([p for p in set(i) if p!='None'])        
+
+df_encoded_['words']= pd.Series(words4)
+
+st.write('Prediction Results for Binary Bidirectional Long-term Short-term Memory (BiLSTM)')
+
+st.subheader('Prediction Results Loss & Accuracy Report')
+#st.write(output_df.iloc[:,1:])
+
+st.subheader('Predicted Skill Category for each ID')
+df_cat_default_type=st.selectbox('Select ID', list(df_encoded_.id.unique()))
+                          
+df_cat_df=df_encoded_[df_encoded_.id==df_cat_default_type]
+
+st.write(df_cat_df.iloc[:,:3])
+st.write(df_cat_df.iloc[:,3])
+         
+#st.subheader('Words Matched to Predicted Skill Category')
+#st.write(pd.concat([pd.Series(list(range(1,len(df_cat_df.iloc[:,4])+1)),name='index_'), 
+           #pd.Series(df_cat_df.iloc[:,3],name='word').explode()],
+          #axis=1))
