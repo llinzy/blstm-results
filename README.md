@@ -8,8 +8,8 @@ Steps:
    Model location: blstm_model/blstm_.py
 2. Deploy a Streamlit application to visualize model results on Heroku. 
 
-The Streamlit application for this model can be viewed here: https://bilstm.herokuapp.com/
-
+The Streamlit application for this model can be viewed here: [https://bilstm.herokuapp.com/
+](https://blstm-results-85f4e51f6511.herokuapp.com/)
 You are welcome to run the deep learning model directly in heroku here: https://nlp-deep-learning.herokuapp.com/
 
 Data: online job postings broken into skill categories as designated by ONET online. Preprocessing: 1. emails removed using regex 2. punctuation removed 3. lowercase transformation 4. stemmed
